@@ -1,0 +1,13 @@
+spec:
+  container:
+  - name: main
+    image: /orca_tracker/weather/orca_tracker_image_repo/docker_snowpark_container_services:demo
+    env:
+      SNOWFLAKE_WAREHOUSE: SPCS_ETL
+    secrets:
+      - snowflakeSecret: ORCA_TRACKER.WEATHER.WEATHER_API_KEY
+        secretKeyRef: secret_string
+        envVarName: OPEN_WEATHER_API_KEY
+    command:
+      - python3
+      - main.py
